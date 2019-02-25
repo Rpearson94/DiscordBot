@@ -31,6 +31,21 @@ client.on('ready', () => {
 	generalChannel.send('Hello, world!');
 });
 
+client.on('message', (receivedMessage) => {
+	// Prevent bot from responding to its own messages
+	if (receivedMessage.author == client.user) {
+		return;
+	}
+
+	// Check if the bot's user was tagged in the message
+	if (receivedMessage.content.includes(client.user.toString())) {
+		// Send acknowledgement message
+		receivedMessage.channel.send(
+			'Message received from ' + receivedMessage.author.toString() + ': ' + receivedMessage.content
+		);
+	}
+});
+
 bot_secret_token = 'NTQ4MzQxMDU0MTEwNDMzMjkx.D1D6nw.NW2SFkmUYDMINI1RcGRDFlQSAj0';
 
 client.login(bot_secret_token);
