@@ -7,7 +7,6 @@ client.on('ready', () => {
 	console.log('Servers:');
 	client.guilds.forEach((guild) => {
 		console.log(' - ' + guild.name);
-
 		// List all channels
 		guild.channels.forEach((channel) => {
 			console.log(` -- ${channel.name} (${channel.type}) - ${channel.id}`);
@@ -44,16 +43,25 @@ function processCommand(receivedMessage) {
 		helpCommand(arguments, receivedMessage);
 	} else if (primaryCommand == 'multiply') {
 		multiplyCommand(arguments, receivedMessage);
+	} else if (primaryCommand == 'date') {
+		dateCommand(receivedMessage);
 	} else {
 		receivedMessage.channel.send("I don't understand the command. Try `!help` or `!multiply`");
 	}
 }
 
+function dateCommand(receivedMessage) {
+	var d = new Date();
+	receivedMessage.channel.send('The current date is:' + d.getMonth() + ' ' + d.getDay() + ' ' + d.getFullYear());
+}
+
 function helpCommand(arguments, receivedMessage) {
 	if (arguments.length > 0) {
 		receivedMessage.channel.send('It looks like you might need help with ' + arguments);
+		return;
 	} else {
 		receivedMessage.channel.send("I'm not sure what you need help with. Try `!help [topic]`");
+		return;
 	}
 }
 
