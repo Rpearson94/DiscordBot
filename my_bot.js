@@ -3,17 +3,6 @@ const client = new Discord.Client();
 
 client.on('ready', () => {
 	console.log('Connected as ' + client.user.tag);
-});
-
-client.on('ready', () => {
-	// List servers the bot is connected to
-	console.log('Servers:');
-	client.guilds.forEach((guild) => {
-		console.log(' - ' + guild.name);
-	});
-});
-
-client.on('ready', () => {
 	// List servers the bot is connected to
 	console.log('Servers:');
 	client.guilds.forEach((guild) => {
