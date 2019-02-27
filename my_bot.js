@@ -21,21 +21,6 @@ client.on('ready', () => {
 });
 
 client.on('message', (receivedMessage) => {
-	// Prevent bot from responding to its own messages
-	if (receivedMessage.author == client.user) {
-		return;
-	}
-
-	// Check if the bot's user was tagged in the message
-	if (receivedMessage.content.includes(client.user.toString())) {
-		// Send acknowledgement message
-		receivedMessage.channel.send(
-			'Message received from ' + receivedMessage.author.toString() + ': ' + receivedMessage.content
-		);
-	}
-});
-
-client.on('message', (receivedMessage) => {
 	if (receivedMessage.author == client.user) {
 		// Prevent bot from responding to its own messages
 		return;
@@ -55,8 +40,8 @@ function processCommand(receivedMessage) {
 	console.log('Command received: ' + primaryCommand);
 	console.log('Arguments: ' + arguments); // There may not be any arguments
 
-	if (primaryCommand == 'time') {
-		timeCommand(primaryCommand);
+	if (primaryCommand == 'help') {
+		helpCommand(arguments, receivedMessage);
 	} else if (primaryCommand == 'multiply') {
 		multiplyCommand(arguments, receivedMessage);
 	} else {
@@ -64,13 +49,11 @@ function processCommand(receivedMessage) {
 	}
 }
 
-function timeCommand(primaryCommand) {
-	if (primaryCommand.length > 0) {
-		var today = new Date();
-		var time = today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
-		receivedMessage.channel.send('The current time is: ' + time);
+function helpCommand(arguments, receivedMessage) {
+	if (arguments.length > 0) {
+		receivedMessage.channel.send('It looks like you might need help with ' + arguments);
 	} else {
-		receivedMessage.channel.send("I can't help with that plese use '!time'");
+		receivedMessage.channel.send("I'm not sure what you need help with. Try `!help [topic]`");
 	}
 }
 
