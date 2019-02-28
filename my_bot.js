@@ -1,5 +1,10 @@
 const Discord = require('discord.js');
+
+require('dotenv').config();
+
 const client = new Discord.Client();
+
+const prefix = process.env.PREFIX;
 
 client.on('ready', () => {
 	console.log('Connected as ' + client.user.tag);
@@ -52,7 +57,7 @@ function processCommand(receivedMessage) {
 
 function dateCommand(receivedMessage) {
 	var d = new Date();
-	receivedMessage.channel.send('The current date is:' + d.getMonth() + ' ' + d.getDay() + ' ' + d.getFullYear());
+	receivedMessage.channel.send('The current date is: ' + d.getMonth() + ' ' + d.getDay() + ' ' + d.getFullYear());
 }
 
 function helpCommand(arguments, receivedMessage) {
@@ -77,6 +82,4 @@ function multiplyCommand(arguments, receivedMessage) {
 	receivedMessage.channel.send('The product of ' + arguments + ' multiplied together is: ' + product.toString());
 }
 
-bot_secret_token = 'NTQ4MzQxMDU0MTEwNDMzMjkx.D1D6nw.NW2SFkmUYDMINI1RcGRDFlQSAj0';
-
-client.login(bot_secret_token);
+client.login();
