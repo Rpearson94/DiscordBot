@@ -1,7 +1,5 @@
 const Discord = require('discord.js');
-
 require('dotenv').config();
-
 const client = new Discord.Client();
 
 const prefix = process.env.PREFIX;
@@ -57,7 +55,7 @@ function processCommand(receivedMessage) {
 
 function dateCommand(receivedMessage) {
 	var d = new Date();
-	receivedMessage.channel.send('The current date is: ' + d.getMonth() + ' ' + d.getDay() + ' ' + d.getFullYear());
+	receivedMessage.channel.send('The current date is: ' + d);
 }
 
 function helpCommand(arguments, receivedMessage) {
