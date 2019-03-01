@@ -48,9 +48,14 @@ function processCommand(receivedMessage) {
 		multiplyCommand(arguments, receivedMessage);
 	} else if (primaryCommand == 'date') {
 		dateCommand(receivedMessage);
+	} else if (primaryCommand == 'status') {
+		statusCommand(arguments, receivedMessage);
 	} else {
 		receivedMessage.channel.send("I don't understand the command. Try `!help` or `!multiply`");
 	}
+}
+function statusCommand(arguments, receivedMessage) {
+	
 }
 
 function dateCommand(receivedMessage) {
