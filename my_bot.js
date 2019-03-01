@@ -55,7 +55,13 @@ function processCommand(receivedMessage) {
 	}
 }
 function statusCommand(arguments, receivedMessage) {
-	
+	var game = arguments.name;
+	if (arguments.length > 0) {
+		receivedMessage.channel.send(arguments + ' is playing: ' + game);
+		return;
+	} else arguments.length < 0;
+	receivedMessage.channel.send('Please enter a name to see what game they are playing.');
+	return;
 }
 
 function dateCommand(receivedMessage) {
